@@ -1,0 +1,49 @@
+<div class='row' ng-controller='adminCreateclinic'>
+
+	<ul class="breadcrumbs">
+	  <li><a href="#/admin">Home</a></li>
+	  <li><a href="#/admin/applications">Applications</a></li>
+	  <li><a href="#/admin/clinics">Clinics</a></li>
+	  <li><a href="#/admin/users">Users</a></li>
+	</ul>
+
+  	<div class='twelve columns centered'>
+  		<h5><a href="#/admin/clinics">Clinics</a> | <a href="#/admin/clinic/create">New Clinic</a></h5>
+		<hr />
+		<form name="form" class="panel" novalidate>
+			<h3>New Clinic</h3>
+	  		<label name="name">Name</label>
+			<input type="text" name="name" ng-model="clinic.name" placeholder="Name" required />
+
+	  		<label name="name">password</label>
+			<input type="password" name="password" ng-model="clinic.password" placeholder="Password" required ng-minlength = '7'  />
+
+	  		<label name="name">Email</label>
+			<input type="text" name="email" ng-model="clinic.email" placeholder="Email" required />
+
+			<label name="email">Phone number</label>
+			<input type="text" name="phone_number" ng-model="clinic.phone_number" placeholder="phone Number " required />
+
+			<label name="email">City</label>
+			<input type="text" name="city" ng-model="clinic.city" placeholder="City" required />
+
+			<label name="address">Address</label>
+			<input type="text" name="address" ng-model="clinic.address" placeholder="Address" required />
+
+			<label name="description">Logo</label>
+			<input type="text" name="logo_link" ng-model="clinic.logo_link" placeholder="Logo" required />
+
+			<label name="picture">Picture</label>
+			<input type="text" name="pic_link" ng-model="clinic.pic_link" placeholder="Picture" required />
+
+			<label name="description">Description</label>
+			<input type="text" name="description" ng-model="clinic.description" placeholder="description" required />
+			<div class = 'alert-box' >
+				<p ng-show = 'form.password.$error.minlength || form.password.$invalid' >Password MUST be 7+ characters...</p>
+			</div>
+			<button ng-disabled = 'form.$invalid' class='button' ng-click="create()">Create</button>
+
+		</form>
+	</div>
+
+</div>

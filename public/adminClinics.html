@@ -1,0 +1,35 @@
+<div class='row' ng-controller='adminClinics'>
+
+	<ul class="breadcrumbs">
+	  <li><a href="#/admin">Home</a></li>
+	  <li><a href="#/admin/applications">Applications</a></li>
+	  <li><a href="#/admin/clinics">Clinics</a></li>
+	  <li><a href="#/admin/users">Users</a></li>
+	</ul>
+
+	<div class='twelve columns centered'>
+	<h5><a href="#/admin/clinics">Clinics</a> | <a href="#/admin/clinic/create" </a>New Clinic</h5>
+	<hr />
+		<table ng-model = 'clinics'>
+			<thead>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>City</th>
+				<th>adderss</th>
+				<th>Description</th>
+				<th>Delete</th>
+			</thead>
+			<tr ng-repeat='info in clinics'>			
+				<td>{{info.name}}</td>
+				<td>{{info.email}}</td>
+				<td>{{info.phone_number}}</td>
+				<td>{{info.city}}</td>
+				<td>{{info.address}}</td>
+				<td>{{info.description}}</td>
+				<td ><a ng-click = 'daLinkclinic(info.id, index)' href="">x</a></td>
+			</tr>
+		</table>
+	</div>
+
+</div>

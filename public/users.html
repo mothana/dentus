@@ -1,0 +1,60 @@
+<div ng-controller='users'>
+
+	<div class="row">
+		<div class='eight columns centered panel' ng-model='user'>
+			<div class="row">
+				<h5>Dentus - User identity card</h5>
+				<hr />
+			</div>
+			<div class="row">
+				<div class="twelve columns">
+					<img src="img/person.jpg">
+				</div>
+			</div>
+			<div class="row">
+				<div class="eight columns">
+					<h5>Name : {{user.first_name}} {{user.last_name}}</h5>
+					<h5>Email : {{user.email}} </h5>
+					<h5>Nationality : {{user.nationality}}</h5>
+					<h5>Balance : {{user.balance}}</h5>
+					<h5>Serial Number : {{user.serial_number}}</h5>
+					<h5>Expiration Date : {{user.created_at}}</h5>
+				</div>
+				<div class="four columns">
+					<img src="img/logo.png">
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<br />
+
+	<div class="row">
+		<div class="eight columns centered"  ng-model='clinics'>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>City</th>
+						<th>Phone</th>
+						<th>Diagnosis</th>
+						<th>Cost</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+
+				<tbody ng-repeat="info in clinics">
+					<tr>
+						<td>{{info.name}}</td>
+						<td>{{info.city}}</td>
+						<td>{{info.phone_number}}</td>
+						<td>Someting very minor</td>
+						<td>200</td>
+						<td>{{info.created_at}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>

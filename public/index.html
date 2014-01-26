@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Dentus</title>
+
+  <!-- Included CSS Files -->
+  <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="foundation/stylesheets/app.css">
+  <link rel="stylesheet" href="main.css">
+
+  <!-- The main CSS file-->
+  <link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+
+<body data-ng-app='dentus'>
+
+  <div class="fixed">
+    <nav class='top-bar'>
+
+      <ul>
+        <li class='name'><h1><a href="#">Dentus</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+
+      <section>
+        <ul class='left'>
+          <li><a ng-href="#/login">LogIn</a></li>
+          <li><a ng-href="#/faq">Faq</a></li>
+          <li><a ng-href="#/users/signup">SignUp</a></li>
+          <li><a ng-href="#/ContactUs">ContactUs</a></li>
+        </ul>
+      </section>
+
+    </nav>
+  </div>
+
+  <br />
+
+  <div ng-view></div>
+
+
+
+  <script src="angular-file-upload-shim.min.js"></script> 
+
+
+
+  <!-- Latest version of jQuery -->
+  <script src="foundation/javascripts/jquery.js"></script>
+  <!-- Custom Modernizr for Foundation -->
+  <script src="foundation/javascripts/modernizr.foundation.js"></script>
+  <!-- Included JS Files (Minified) -->
+  <script src="foundation/javascripts/foundation.min.js"></script>
+  <!-- Initialize JS Plugins -->
+  <script src="foundation/javascripts/app.js"></script>
+  <!-- AngularJS min file -->
+  <script src="angular.min.js"></script>
+  <!-- My main functins file -->
+  <script src="main.js"></script>
+
+  <script src="angular-file-upload.min.js"></script> 
+
+
+  <!-- Reavel message -->
+  <div id="myModal" class="reveal-modal" data-ng-controller='revealBox'>
+    <h2>{{daTitle}}</h2>
+    <p class="lead">{{message}}</p>
+    <button class="button">{{daLink}}"</button>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+
+</body>
+</html>

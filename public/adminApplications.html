@@ -1,0 +1,42 @@
+<div class='row' ng-controller='adminApplications'>
+
+	<ul class="breadcrumbs">
+	  <li><a href="#/admin">Home</a></li>
+	  <li><a href="#/admin/applications">Applications</a></li>
+	  <li><a href="#/admin/clinics">Clinics</a></li>
+	  <li><a href="#/admin/users">Users</a></li>
+	</ul>
+
+	<div class="row" ng-show='errorMsg'>
+		<div class="ten columns centered alert-box">
+			{{theMsg}} <span style='float:right;' ng-click='errorMsgClose()'>&times;</span>
+		</div>
+	</div>
+
+	<div class='twelve columns centered' ng-show='showApplications'>
+		<table ng-model='users'>
+			<thead>
+				<th>Full Name</th>
+				<th>Email</th>
+				<th>Nationality</th>
+				<th>Birth date</th>
+				<th>Mobile</th>
+				<th>City</th>
+				<th>Accept</th>
+				<th>Reject</th>
+			</thead>
+			<tr ng-repeat='info in users'>
+				<td>{{info.first_name}} {{info.last_name}}</td>
+				<td>{{info.email}}</td>
+				<td>{{info.nationality}}</td>
+				<td>{{info.birthdate}}</td>
+				<td>{{info.mobile_number}}</td>
+				<td>{{info.city}}</td>
+				<td ><a ng-click = 'accept(info.id, index)' href="">Accept</a></td>
+				<td ><a ng-click = 'reject(info.id, index)' href="">Reject</a></td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>

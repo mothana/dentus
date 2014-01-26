@@ -1,0 +1,31 @@
+<div class='row' ng-controller='admin'>
+
+	<ul class="breadcrumbs">
+	  <li><a href="#/admin">Home</a></li>
+	  <li><a href="#/admin/applications">Applications</a></li>
+	  <li><a href="#/admin/clinics">Clinics</a></li>
+	  <li><a href="#/admin/users">Users</a></li>
+	</ul>
+
+	<div class='twelve columns centered'>
+		<table ng-model = 'visits'>
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Clinic</th>
+					<th>Case</th>
+					<th>Cost</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tr ng-repeat='info in visits'>
+				<td>{{info.first_name}} {{info.last_name}}</td>
+				<td>{{info.name}}</td>
+				<td>{{info.diagnosis}}</td>
+				<td>{{info.cost}}</td>
+				<td>{{info.created_at}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

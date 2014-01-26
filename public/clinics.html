@@ -1,0 +1,104 @@
+<div class='row' ng-controller='clinics'>
+
+	<div class="row">
+		<div class="eight columns">
+			<img src="img/image.jpg">
+		</div>
+		<div class="four columns">
+			<img src="img/clinic_logo.jpg">
+			<h2>{{profile.name}}</h2>
+			<b>{{profile.email}} | {{profile.phone_number}} | {{profile.city}}</b>
+			<p>{{profile.description}}</p>
+		</div>
+	</div>
+	<br />
+	<div class="row panel">
+		<form>
+			<div class="ten columns">
+				<input type='text' ng-model='user.serial_number' name='user.serial_number' placeholder='Serial Number' />
+			</div>
+			<div class="two columns">
+				<button ng-click='searchButton()' class="button">Search</button>
+			</div>
+		</form>
+	</div>
+
+	<br />
+
+	<div class="row" ng-show='errorMsg'>
+		<div class="twelve columns alert-box">
+			{{theMsg}} <span style='float:right;' ng-click='errorMsgClose()'>&times;</span>
+		</div>
+	</div>
+
+	<br />
+
+	<div ng-show='message' class="row panel">
+		<table>
+			<thead>
+				<tr>
+					<th>Picture</th>
+					<th>Full Name</th>
+					<th>Nationality</th>
+					<th>Email</th>
+					<th>Balance</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-model='search'>
+					<td><img src="img/person.jpg"></td>
+					<td>{{search.first_name}} {{search.last_name}}</td>
+					<td>{{search.nationality}}</td>
+					<td>{{search.email}}</td>
+					<td>{{search.balance}}</td>
+				</tr>
+				<tr>
+					<td colspan="5" ng-show='showCost'>
+						<input type="text" name="cost" ng-model="cost" placeholder='Cost'/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" ng-show='showDiagnosis'>
+						<textarea name='diagnosis' ng-model='diagnosis' placeholder='case'></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" ng-show='showLowBalance'>
+						<h5>Please renew your subscription</h5>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5">
+						<button ng-show='ShowCheckIn' ng-click='register()' class="button">Register</button>
+						<button ng-click='cancel()' class="button">Cancel</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br />
+
+
+	<div class="row">
+		<table class="twelve">
+			<thead>
+				<tr>
+					<th>Full Name</th>
+					<th>Nationality</th>
+					<th>Birthdate</th>
+					<th>Mobile</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tr ng-repeat='info in customers'>
+				<td>{{info.first_name}} {{info.last_name}}</td>
+				<td>{{info.nationality}}</td>
+				<td>{{info.birthdate}}</td>
+				<td>{{info.mobile_number}}</td>
+				<td>{{info.email}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

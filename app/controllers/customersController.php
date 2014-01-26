@@ -1,0 +1,81 @@
+<?php
+
+/**
+* customers controller
+*/
+class customersController extends BaseController
+{
+	public function getIndex()
+	{
+		return customersModel::where('active','=','true')->get();
+	}
+
+	public function getProfile($id = 0)
+	{
+		return customersModel::find($id);
+	}
+
+	public function getApplications()
+	{
+		return customersModel::where('active','=','false')->get();
+	}
+
+	public function getAccept($id=0)
+	{
+		$serial_number = date('y').date('m').date('d');
+
+		$customer = customersModel::find($id);
+		$customer->active = "true";
+		$customer->serial_number = $serial_number.$customer->id;
+		$customer->save();
+
+		$user = new User;
+		$user->first_name = $customer->first_name;
+		$user->last_name = $customer->last_name;
+		$user->email = $customer->email;
+		$user->password = $customer->password;
+		$user->role = 'user';
+		$user->user_id = $customer->id;
+		$user->save();
+	}
+
+	public function postVisits()
+	{
+		return Response::json(customersModel::find(Input::get('id'))->visits()->get(),200);
+	}
+
+	public function getClinics($id)
+	{
+		return Response::json(customersModel::find($id)->clinics()->get(),200);
+	}
+
+	public function postCreate()
+	{
+		if (Input::hasFile('file'))
+		{
+			$prefix = date('y').date('m').date('d');
+			Input::flash();
+			Session::put('fileName',$prefix.Input::file('file')->getFileName());
+			Input::file('file')->move('uploads',Session::get('fileName'));
+			return Response::json('true',200);	
+		}
+
+		$customer = new customersModel;
+		if($customer->saveItem($customer)) return Response::json('New customer has been added successfully',200);
+		return Response::json('Error : validation has failed',400);
+	}
+
+	public function postUpdate($id = 0)
+	{
+		$customer = customersModel::find($id);
+		if(!$customer->saveItem($customer)) Response::json('Error : validation has failed',400);
+		return Response::json('New customer has been updated successfully',200);
+	}
+
+	public function getDelete($id = 0)
+	{
+		$customer = customersModel::find($id);
+		$customer->delete();
+		return Response::json('Customer has been deleted successfully',200);
+	}
+}

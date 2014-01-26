@@ -1,0 +1,39 @@
+<div class='row' ng-controller='adminUsers'>
+
+	<ul class="breadcrumbs">
+	  <li><a href="#/admin">Home</a></li>
+	  <li><a href="#/admin/applications">Applications</a></li>
+	  <li><a href="#/admin/clinics">Clinics</a></li>
+	  <li><a href="#/admin/users">Users</a></li>
+	</ul>
+
+	<div class='twelve columns centered'>
+		<h5><a href="#admin/users">Users</a> | <a href="#/admin/user/create">New User</a></h5>
+		<hr />
+		<table ng-model='users'>
+			<thead>
+				<th>Full Name</th>
+				<th>Email</th>
+				<th>Nationality</th>
+				<th>Birth date</th>
+				<th>Mobile</th>
+				<th>City</th>
+				<th>M.Status</th>
+				<th>Num of Childern</th>
+				<th>X</th>
+			</thead>
+			<tr ng-repeat='info in users'>
+				<td>{{info.first_name}} {{info.last_name}}</td>
+				<td>{{info.email}}</td>
+				<td>{{info.nationality}}</td>
+				<td>{{info.birthdate}}</td>
+				<td>{{info.mobile_number}}</td>
+				<td>{{info.city}}</td>
+				<td>{{info.marital_status}}</td>
+				<td>{{info.childern}}</td>
+				<td ><a ng-click = 'daLinkusers(info.id, index)' href="">x</a></td>
+			</tr>
+		</table>
+	</div>
+
+</div>

@@ -1,0 +1,34 @@
+<div class='row' ng-controller='logIn'>
+
+	<div class="row">
+		<div class="six columns centered">
+			<div class="panel">
+				<h3 align="center">LogIn</h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+	  	<div class='six columns centered'>
+
+	  		<div class="panel">
+				<form name="form" novalidate>
+					<input type="email" ng-model='email' placeholder="Email " required />
+					<input ng-mode='password' type="password" ng-model="password" placeholder="Password" required />
+					<button class="button" ng-click="login()">Login</button>
+				</form>
+
+				<div class='ten columns centered'>
+					<table>
+						<tr ng-repeat='item in tasks'>
+							<td>{{item.name}}</td>
+							<td><button ng-disabled = 'form.$invalid' class='button' ng-click="test()">X</button></td>
+						</tr>
+					</table>
+				</div>	
+	  		</div>
+
+		</div>		
+	</div>
+
+</div>
