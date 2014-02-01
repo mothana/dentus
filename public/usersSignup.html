@@ -5,6 +5,10 @@
 			<h2>Join us Now!</h2>
 		</div>
 
+		<div data-ng-show="message">
+			
+		</div>
+
 		<div class="panel">
 			<form name="form" enctype="multipart/form-data" novalidate>
 		  		<label name="first_name">First Name</label>
@@ -26,7 +30,16 @@
 				<input type="text" name="passport_number" ng-model="user.passport_number" placeholder="Passport Number"required />
 
 				<label name="city">City</label>
-				<input type="text" name="city" ng-model="user.city" placeholder="City"r equired />
+				<select ng-model="user.city" class="button"  required>
+					<option>Abu Dhabi</option>
+					<option>Dubai</option>
+					<option>Sharjah</option>
+					<option>Ajman</option>
+					<option>Um Alquween</option>
+					<option>Fujeerah</option>
+					<option>Al Ain</option>
+					<option>Ras Alkheema</option>
+				</select>
 
 				<label name="address">Address</label>
 				<input type="text" name="address" ng-model="user.address" placeholder="address" required/>
@@ -35,10 +48,21 @@
 				<input type="text" name="work_status" ng-model="user.work_status" placeholder="Work Status" required/>
 
 				<label name="marital_status">Maritial status</label>
-				<input type="text" name="marital_status" ng-model="user.marital_status" placeholder="Maritial Status" required/>
+				<select ng-model="user.marital_status" class="button" required>
+					<option>Married</option>
+					<option>Single</option>
+				</select>
 
 				<label name="childern">Children</label>
-				<input type="text" name="childern" ng-model="user.childern" placeholder="Number of Childeren" required />
+				<select ng-model="user.childern" class="button" required>
+					<option value="1" selected>1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+				</select>
 				
 				<label name="company_name">Company name</label>
 				<input type="text" name="company_name" ng-model="user.company_name" placeholder="Company Name" required />

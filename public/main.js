@@ -7,15 +7,19 @@ dentus.config(function ($routeProvider){
 	$routeProvider
 		.when('/',
 		{
-			controller : 'home',
+			controller : 'cms',
 			templateUrl : 'home.html'
 		})
 		.when('/faq', {
-			controller : 'faq',
+			controller : 'cms',
 			templateUrl : 'faq.html'	
 		})
+		.when('/signup/success', {
+			controller : 'cms',
+			templateUrl : 'thanks.html'	
+		})
 		.when('/ContactUs', {
-			controller : 'ContactUs',
+			controller : 'cms',
 			templateUrl : 'ContactUs.html'	
 		})
 		.when('/login', {
@@ -374,12 +378,12 @@ dentus.controller('users',function ($http,$scope) {
 	});
 });
 
-var usersSignup = [ '$http','$scope', '$upload', function($http,$scope, $upload) {
+var usersSignup = [ '$http','$scope', '$upload','$location', function($http,$scope,$upload,$location) {
 
 	$scope.signUp = function () {
 		$http.post('api/v1/customers/create',$scope.user)
 		.success(function (data,success) {
-			alert('good');
+			$location.path('signup/success');
 		})
 		.error(function (data,success) {
 			alert('not');
@@ -405,7 +409,7 @@ var usersSignup = [ '$http','$scope', '$upload', function($http,$scope, $upload)
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
-        console.log(data);
+        
       });
       //.error(...)
       //.then(success, error, progress); 
@@ -503,15 +507,7 @@ dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 
 });
 
-dentus.controller('home',function ($scope,queryDB) {
-
-});
-
-dentus.controller('faq',function ($scope,queryDB) {
-
-});
-
-dentus.controller('ContactUs',function ($scope,queryDB) {
+dentus.controller('cms',function ($scope,queryDB) {
 
 });
 
