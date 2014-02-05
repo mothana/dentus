@@ -10,7 +10,7 @@ form[novalidate] input {
 }
 
 input[required].ng-pristine{
-	border-color: #e74c3c;
+	border-color: gray;
 }
 
 input.ng-invalid.ng-dirty{

@@ -380,6 +380,11 @@ dentus.controller('users',function ($http,$scope) {
 
 var usersSignup = [ '$http','$scope', '$upload','$location', function($http,$scope,$upload,$location) {
 
+  $(function() {
+    $( "#birthdate" ).datepicker();
+  });
+
+
 	$scope.signUp = function () {
 		$http.post('api/v1/customers/create',$scope.user)
 		.success(function (data,success) {
