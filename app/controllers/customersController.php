@@ -54,15 +54,34 @@ class customersController extends BaseController
 		if (Input::hasFile('file'))
 		{
 			$prefix = date('y').date('m').date('d');
-			Input::flash();
 			Session::put('fileName',$prefix.Input::file('file')->getFileName());
 			Input::file('file')->move('uploads',Session::get('fileName'));
 			return Response::json('true',200);	
 		}
 
 		$customer = new customersModel;
-		if($customer->saveItem($customer)) return Response::json('New customer has been added successfully',200);
+
+		if($customer->saveItem($customer))
+		{
+			Session::put('signed','true');
+			return Response::json('New customer has been added successfully',200);
+		}
+
 		return Response::json('Error : validation has failed',400);
+	}
+
+	//check if the user in has signed up .... this is used to tell the frontEnd that the user has signed up
+	//so able to show the "success" page which means the user has signed up successfully
+	public function getMarkSignedUp()
+	{
+		return $status = (Session::get('signed') == 'true') ? Response::json('true',200) : Response::json('false',400);
+	}
+
+	//used to tell the front end that this user is no longer able to view the "success" page
+	public function getUnmarkSignUp()
+	{
+		Session::forget('signed');
+		return Response::json('true',200);
 	}
 
 	public function postUpdate($id = 0)
