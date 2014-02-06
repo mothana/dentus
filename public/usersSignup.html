@@ -45,7 +45,10 @@
 				<input type="text" name="address" ng-model="user.address" placeholder="address" required/>
 
 				<label name="work_status">Work Status</label>
-				<input type="text" name="work_status" ng-model="user.work_status" placeholder="Work Status" required/>
+				<select ng-model="user.work_status" class="button" required>
+					<option>Employed</option>
+					<option>Unemployed</option>
+				</select>
 
 				<label name="marital_status">Maritial status</label>
 				<select ng-model="user.marital_status" class="button" required>
