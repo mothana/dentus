@@ -72,13 +72,13 @@ class customersController extends BaseController
 
 	//check if the user in has signed up .... this is used to tell the frontEnd that the user has signed up
 	//so able to show the "success" page which means the user has signed up successfully
-	public function getMarkSignedUp()
+	public function getChecksignup()
 	{
 		return $status = (Session::get('signed') == 'true') ? Response::json('true',200) : Response::json('false',400);
 	}
 
 	//used to tell the front end that this user is no longer able to view the "success" page
-	public function getUnmarkSignUp()
+	public function getForgetsignup()
 	{
 		Session::forget('signed');
 		return Response::json('true',200);
