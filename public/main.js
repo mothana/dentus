@@ -15,7 +15,7 @@ dentus.config(function ($routeProvider){
 			templateUrl : 'faq.html'	
 		})
 		.when('/signup/success', {
-			controller : 'cms',
+			controller : 'success',
 			templateUrl : 'thanks.html'	
 		})
 		.when('/ContactUs', {
@@ -422,7 +422,6 @@ var usersSignup = [ '$http','$scope', '$upload','$location', function($http,$sco
 }];
 
 
-
 dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 	$http.get('api/v1/login/check')
 		.success(function (data,success) {
@@ -513,6 +512,16 @@ dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 
 dentus.controller('cms',function ($scope,queryDB) {
 
+});
+
+dentus.controller('success',function ($scope,$http,$location) {
+	$http.get('api/v1/customers/checksignup')
+	.success(function (data,success) {
+		$http.get('api/v1/customers/forgetsignup');
+	})
+	.error(function (data,success) {
+		$location.path('users/signup');
+	});
 });
 
 dentus.controller('revealBox',function ($scope,revealBoxManager) {
