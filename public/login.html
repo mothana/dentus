@@ -16,7 +16,13 @@
 	  			</div>
 	  		</div>
 
-	  		<div class="panel">
+	  		<div data-ng-show="loggedIn">
+	  			<div data-alert class="alert-box">
+	  				You are already logged in! . Click <a style="color:#ffffff;" data-ng-click='logout()'><i><b>here</b></i></a> to logout!
+	  			</div>	
+	  		</div>
+
+	  		<div class="panel" data-ng-show="loginBox">
 				<form name="form" novalidate>
 					<input type="email" ng-model='email' placeholder="Email " required />
 					<input ng-mode='password' type="password" ng-model="password" placeholder="Password" required />
