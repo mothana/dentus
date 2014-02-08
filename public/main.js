@@ -186,7 +186,7 @@ dentus.controller('logIn',function ($http,$location,$scope,queryDB) {
 
 		})
 		.error(function (data,success) {
-			alert(data);
+			$scope.errorMsg = true;
 		});
 	}
 });
