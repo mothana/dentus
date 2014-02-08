@@ -165,6 +165,29 @@ dentus.controller('admin',function ($location,$http,$scope,queryDB) {
 });
 
 dentus.controller('logIn',function ($http,$location,$scope,queryDB) {
+	
+	//if the user is already logged in then redirect him/her to the home page
+	$http.get('api/v1/login/check')
+	.success(function () {
+		$scope.loggedIn = true;
+		$scope.loginBox = false;
+	})
+	.error(function () {
+		$scope.loginBox = true;
+		$scope.loggedIn = false;
+	});
+
+	$scope.logout = function () {
+		$http.get('api/v1/login/check')
+		.success(function  () {
+			$scope.loggedIn = false;
+			$scope.loginBox = true;
+		}).
+		error(function  () {
+			
+		})
+	}
+
 	//get the login credentials and try to log in
 	$scope.login = function() {
 		var logData = {'email':$scope.email,'password':$scope.password}
