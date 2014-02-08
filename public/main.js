@@ -378,8 +378,9 @@ dentus.controller('users',function ($http,$scope) {
 	});
 });
 
-var usersSignup = [ '$http','$scope', '$upload','$location', function($http,$scope,$upload,$location) {
+var usersSignup = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
 
+	//Make the birthdate field a JQuery date picker file
 	$(function() {
 		$( "#birthdate" ).datepicker();
 	});
@@ -390,7 +391,10 @@ var usersSignup = [ '$http','$scope', '$upload','$location', function($http,$sco
 			$location.path('signup/success');
 		})
 		.error(function (data,success) {
-			alert('not');
+		    revealBoxManager.setDaTitle('error');
+			revealBoxManager.setMessage('Could not sign you up!.Kindly , fill up all of the form fields and click the Sign Up.');
+			revealBoxManager.setDaLink('Home');
+			$('#myModal').reveal();
 		});
 	}
 
