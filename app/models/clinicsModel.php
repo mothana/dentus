@@ -30,9 +30,7 @@ class clinicsModel extends Eloquent
 				'city'=>'required',
 				'address'=>'required',
 				'description'=>'required',
-				'password'=>'required',
-				'logo_link'=>'required',
-				'pic_link'=>'required'
+				'password'=>'required'
 			);
 
 		$Validator = Validator::make(Input::all(),$Rules);
@@ -45,10 +43,13 @@ class clinicsModel extends Eloquent
 		$clinic->city = Input::get('city');
 		$clinic->address = Input::get('address');
 		$clinic->description = Input::get('description');
-		$clinic->password = Input::get('password');
-		$clinic->logo_link = Input::get('logo_link');
-		$clinic->pic_link = Input::get('pic_link');
+		$clinic->password = Hash::make(Input::get('password'));
+		$clinic->logo_link = Session::get('clinicLogo');
+		$clinic->pic_link = Session::get('clinicPic');
 		$clinic->save();
+
+		Session::forget('clinicPic');
+		Session::forget('clinicLogo');
 
 		return $clinic;
 	}
