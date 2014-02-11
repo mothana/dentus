@@ -214,25 +214,49 @@ dentus.controller('logIn',function ($http,$location,$scope,queryDB) {
 	}
 });
 
-dentus.controller('adminCreateclinic',function ($http,$scope,queryDB,$location,revealBoxManager) {
-	$http.get('api/v1/login/check')
+var adminCreateclinic = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
+
+	$scope.create = function () {
+		$http.post('api/v1/clinics/create',$scope.clinic)
 		.success(function (data,success) {
-			$scope.create = function () {
-				$http.post('api/v1/clinics/create',$scope.clinic)
-					.success(function (data,success) {
-					revealBoxManager.setMessage();
-					$('#myModal').reveal();
-					})
-					.error(function (data,success) {
-						revealBoxManager.setMessage();
-						$('#myModal').reveal();
-					});
-				}
-			})	
-				.error(function (data,success) {
-			$location.path('login');
-			});	
-});
+			$location.path('admin/clinics')
+		})
+		.error(function (data,success) {
+		    revealBoxManager.setDaTitle('error');
+			revealBoxManager.setMessage('Error : Could not create new clinic');
+			revealBoxManager.setDaLink('Home');
+			$('#myModal').reveal();
+		});
+	}
+
+	$scope.onFileSelect = function($files) {
+    	//$files: an array of files selected, each file has name, size, and type.
+	    for (var i = 0; i < $files.length; i++) {
+	      var file = $files[i];
+	      $scope.upload = $upload.upload({
+	        url: 'api/v1/clinics/create', //upload.php script, node.js route, or servlet url
+	        // method: POST or PUT,
+	        // headers: {'headerKey': 'headerValue'}, withCredential: true,
+	        data: {myObj: $scope.myModelObj},
+	        file: file,
+	        // file: $files, //upload multiple files, this feature only works in HTML5 FromData browsers
+	        /* set file formData name for 'Content-Desposition' header. Default: 'file' */
+	        //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
+	        /* customize how data is added to formData. See #40#issuecomment-28612000 for example */
+	        //formDataAppender: function(formData, key, val){} 
+	      }).progress(function(evt) {
+	        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+	      }).success(function(data, status, headers, config) {
+	      	console.log('ok');
+	        // file is uploaded successfully
+	        console.log('error');
+	      });
+	      //.error(...)
+	      //.then(success, error, progress); 
+	    }
+	};
+}];
+
 
 var adminCreateuser = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
 
