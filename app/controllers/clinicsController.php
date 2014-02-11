@@ -41,6 +41,27 @@ class clinicsController extends BaseController
 
 	public function postCreate()
 	{
+
+		if (Input::hasFile('file'))
+		{
+			$prefix = date('y').date('m').date('d');
+
+			if(!isset($_SESSION['clinicLogo']))
+			{
+				Session::put('clinicLogo',$prefix.Input::file('file')->getFileName());
+				Input::file('file')->move('uploads',Session::get('clinicLogo'));				
+			}
+			else
+			{
+				Session::put('clinicPic',$prefix.Input::file('file')->getFileName());
+				Input::file('file')->move('uploads',Session::get('clinicPic'));
+			}
+
+			
+			return Response::json('true',200);
+		}
+
+
 		$clinic = new clinicsModel;
 		$result = $clinic->saveItem($clinic);
 		if(!$result) return Response::json('Error : could not add new clinic',400);
