@@ -72,8 +72,15 @@ class customersModel extends Eloquent
 			$customer->balance = '0';
 		}
 		
-		$customer->active = 'false';
+		$status = (Auth::user()->role == 'admin') ? 'true' : 'false';
+
+		$customer->active = $status;
+
+
 		$customer->save();
+
+		
+
 		return true;
 	}
 
