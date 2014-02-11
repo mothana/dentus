@@ -232,36 +232,58 @@ dentus.controller('adminCreateclinic',function ($http,$scope,queryDB,$location,r
 				.error(function (data,success) {
 			$location.path('login');
 			});	
-});		
+});
 
-dentus.controller('adminCreateuser',function ($http,$scope,revealBoxManager,$location) {
-	 //queryDB.adminPage();
-	$http.get('api/v1/login/check')
+var adminCreateuser = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
+
+	//Make the birthdate field a JQuery date picker file
+	$(function() {
+		$( "#birthdate" ).datepicker();
+	});
+
+	$scope.signUp = function () {
+		$http.post('api/v1/customers/create',$scope.user)
 		.success(function (data,success) {
-			$scope.signUp = function () {
-	 			$http.post('api/v1/customers/create',$scope.user)
-	 				.success(function (data,success) {
-				 		revealBoxManager.setDaTitle('New User');
-				 		revealBoxManager.setMessage('New user has been created successfully');
-				 		revealBoxManager.setDaLink("admin/user");
-				 		$('#myModal').reveal();
-				 	})
-				 	.error(function (data,success) {
-				 		revealBoxManager.setDaTitle('Error');
-				 		revealBoxManager.setMessage('Filed to add new user');
-				 		revealBoxManager.setDaLink('admin/user/create');
-				 		$('#myModal').reveal();
-				 	});
-				 }
-				 
-			$scope.msgClose = function () {
-				$scope.showMsg = false;
-			}
+			$location.path('admin/users');
 		})
 		.error(function (data,success) {
-			$location.path('login');
-		});	
-});
+		    revealBoxManager.setDaTitle('error');
+			revealBoxManager.setMessage('Could not sign you up!.Kindly , fill up all of the form fields and click the Sign Up.');
+			revealBoxManager.setDaLink('Home');
+			$('#myModal').reveal();
+		});
+	}
+
+  $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+    for (var i = 0; i < $files.length; i++) {
+      var file = $files[i];
+      $scope.upload = $upload.upload({
+        url: 'api/v1/customers/create', //upload.php script, node.js route, or servlet url
+        // method: POST or PUT,
+        // headers: {'headerKey': 'headerValue'}, withCredential: true,
+        data: {myObj: $scope.myModelObj},
+        file: file,
+        // file: $files, //upload multiple files, this feature only works in HTML5 FromData browsers
+        /* set file formData name for 'Content-Desposition' header. Default: 'file' */
+        //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
+        /* customize how data is added to formData. See #40#issuecomment-28612000 for example */
+        //formDataAppender: function(formData, key, val){} 
+      }).progress(function(evt) {
+        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+      }).success(function(data, status, headers, config) {
+        // file is uploaded successfully
+        
+      });
+      //.error(...)
+      //.then(success, error, progress); 
+    }
+  };
+}];
+
+
+
+
 
 dentus.controller('adminUsers',function (revealBoxManager,$location,$http,$scope,queryDB) {
 	$http.get('api/v1/login/check')
