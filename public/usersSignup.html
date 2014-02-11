@@ -71,7 +71,16 @@
 				<input type="text" name="company_name" ng-model="user.company_name" placeholder="Company Name" required />
 			
 				<label name="company_city">Company city</label>
-				<input type="text" name="company_city" ng-model="user.company_city" placeholder="Company City" required />
+				<select ng-model="user.company_city"  class="button"  required>
+					<option>Abu Dhabi</option>
+					<option>Dubai</option>
+					<option>Sharjah</option>
+					<option>Ajman</option>
+					<option>Um Alquween</option>
+					<option>Fujeerah</option>
+					<option>Al Ain</option>
+					<option>Ras Alkheema</option>
+				</select>
 
 				<label name="company_phone">Company phone</label>
 				<input type="number" name="company_phone" ng-model="user.company_phone" placeholder="Company Phone" required/>
