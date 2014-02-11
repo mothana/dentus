@@ -17,23 +17,21 @@
 		<table ng-model='users'>
 			<thead>
 				<th>Full Name</th>
-				<th>Email</th>
 				<th>Nationality</th>
 				<th>Birth date</th>
 				<th>Mobile</th>
 				<th>City</th>
-				<th>Accept</th>
-				<th>Reject</th>
+				<th>√</th>
+				<th>X</th>
 			</thead>
 			<tr ng-repeat='info in users'>
 				<td>{{info.first_name}} {{info.last_name}}</td>
-				<td>{{info.email}}</td>
 				<td>{{info.nationality}}</td>
 				<td>{{info.birthdate}}</td>
 				<td>{{info.mobile_number}}</td>
 				<td>{{info.city}}</td>
-				<td ><a ng-click = 'accept(info.id, index)' href="">Accept</a></td>
-				<td ><a ng-click = 'reject(info.id, index)' href="">Reject</a></td>
+				<td ><a ng-click = 'accept(info.id, index)' href="">√</a></td>
+				<td ><a ng-click = 'reject(info.id, index)' href="">X</a></td>
 			</tr>
 		</table>
 	</div>
