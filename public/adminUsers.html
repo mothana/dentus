@@ -19,7 +19,6 @@
 				<th>Mobile</th>
 				<th>City</th>
 				<th>M.Status</th>
-				<th>Num of Childern</th>
 				<th>X</th>
 			</thead>
 			<tr ng-repeat='info in users'>
@@ -30,7 +29,6 @@
 				<td>{{info.mobile_number}}</td>
 				<td>{{info.city}}</td>
 				<td>{{info.marital_status}}</td>
-				<td>{{info.childern}}</td>
 				<td ><a ng-click = 'daLinkusers(info.id, index)' href="">x</a></td>
 			</tr>
 		</table>
