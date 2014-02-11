@@ -18,7 +18,7 @@
 				<th>City</th>
 				<th>adderss</th>
 				<th>Description</th>
-				<th>Delete</th>
+				<th>X</th>
 			</thead>
 			<tr ng-repeat='info in clinics'>			
 				<td>{{info.name}}</td>
@@ -27,7 +27,7 @@
 				<td>{{info.city}}</td>
 				<td>{{info.address}}</td>
 				<td>{{info.description}}</td>
-				<td ><a ng-click = 'daLinkclinic(info.id, index)' href="">x</a></td>
+				<td ><a ng-click = 'daLinkclinic(info.id, index)' href="">X</a></td>
 			</tr>
 		</table>
 	</div>
