@@ -18,28 +18,34 @@
 			<input type="password" name="password" ng-model="clinic.password" placeholder="Password" required ng-minlength = '7'  />
 
 	  		<label name="name">Email</label>
-			<input type="text" name="email" ng-model="clinic.email" placeholder="Email" required />
+			<input type="email" name="email" ng-model="clinic.email" placeholder="Email" required />
 
 			<label name="email">Phone number</label>
-			<input type="text" name="phone_number" ng-model="clinic.phone_number" placeholder="phone Number " required />
+			<input type="number" name="phone_number" ng-model="clinic.phone_number" placeholder="phone Number " required />
 
 			<label name="email">City</label>
-			<input type="text" name="city" ng-model="clinic.city" placeholder="City" required />
+			<select name="city" ng-model="clinic.city" class="button"  required>
+				<option>Abu Dhabi</option>
+				<option>Dubai</option>
+				<option>Sharjah</option>
+				<option>Ajman</option>
+				<option>Um Alquween</option>
+				<option>Fujeerah</option>
+				<option>Al Ain</option>
+				<option>Ras Alkheema</option>
+			</select>
 
 			<label name="address">Address</label>
 			<input type="text" name="address" ng-model="clinic.address" placeholder="Address" required />
 
 			<label name="description">Logo</label>
-			<input type="text" name="logo_link" ng-model="clinic.logo_link" placeholder="Logo" required />
+			<input type="file" ng-file-select="onFileSelect($files)" />
 
 			<label name="picture">Picture</label>
-			<input type="text" name="pic_link" ng-model="clinic.pic_link" placeholder="Picture" required />
+			<input type="file" ng-file-select="onFileSelect($files)" />
 
 			<label name="description">Description</label>
 			<input type="text" name="description" ng-model="clinic.description" placeholder="description" required />
-			<div class = 'alert-box' >
-				<p ng-show = 'form.password.$error.minlength || form.password.$invalid' >Password MUST be 7+ characters...</p>
-			</div>
 			<button ng-disabled = 'form.$invalid' class='button' ng-click="create()">Create</button>
 
 		</form>
