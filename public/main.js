@@ -305,10 +305,6 @@ var adminCreateuser = [ '$http','$scope', '$upload','$location', 'revealBoxManag
   };
 }];
 
-
-
-
-
 dentus.controller('adminUsers',function (revealBoxManager,$location,$http,$scope,queryDB) {
 	$http.get('api/v1/login/check')
 	.success(function (data,success) {
@@ -351,7 +347,8 @@ dentus.controller('adminClinics',function (revealBoxManager,$location,$http,$sco
 		})
 		.error(function (data,success) {
 	});
-$scope.daLinkclinic = function (info,index) {
+
+	$scope.daLinkclinic = function (info,index) {
 			$http.get('api/v1/clinics/delete/' + info)
 				.success(function (data,success) {
 				    $scope.clinics.splice(index, 1);
