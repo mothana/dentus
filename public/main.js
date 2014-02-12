@@ -494,13 +494,13 @@ var usersSignup = [ '$http','$scope', '$upload','$location', 'revealBoxManager',
 
 dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 	$http.get('api/v1/login/check')
-		.success(function (data,success) {
-			$http.get('api/v1/clinics/profile')
-				.success(function (data,success) {
-					$scope.profile = data;
-				})
-				.error(function (data,success) {
-				});
+	.success(function (data,success) {
+	$http.get('api/v1/clinics/profile')
+	.success(function (data,success) {
+		$scope.profile = data;
+	})
+		.error(function (data,success) {
+	});
 
 	$http.get('api/v1/clinics/customers')
 	.success(function (data,success) {
