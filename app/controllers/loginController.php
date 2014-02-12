@@ -38,7 +38,7 @@ class loginController extends BaseController
 
 	public function getCheck()
 	{
-	return $status = Auth::check() ? Response::json(true,200) : Response::json(false,400);	
+		return $status = Auth::check() ? Response::json('true',200) : Response::json('false',400);	
 	}
 
 	public function getRole()
