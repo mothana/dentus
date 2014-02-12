@@ -178,7 +178,7 @@ dentus.controller('logIn',function ($http,$location,$scope,queryDB) {
 	});
 
 	$scope.logout = function () {
-		$http.get('api/v1/login/check')
+		$http.get('api/v1/login/logout')
 		.success(function  () {
 			$scope.loggedIn = false;
 			$scope.loginBox = true;
