@@ -46,21 +46,19 @@ class clinicsController extends BaseController
 		{
 			$prefix = date('y').date('m').date('d');
 
-			if(!isset($_SESSION['clinicLogo']))
+			if(Session::get('clinicLogo'))
 			{
-				Session::put('clinicLogo',$prefix.Input::file('file')->getFileName());
-				Input::file('file')->move('uploads',Session::get('clinicLogo'));				
+				Session::put('clinicPic',$prefix.Input::file('file')->getFileName());
+				Input::file('file')->move('uploads',Session::get('clinicPic'));			
 			}
 			else
 			{
-				Session::put('clinicPic',$prefix.Input::file('file')->getFileName());
-				Input::file('file')->move('uploads',Session::get('clinicPic'));
+				Session::put('clinicLogo',$prefix.Input::file('file')->getFileName());
+				Input::file('file')->move('uploads',Session::get('clinicLogo'));	
 			}
 
-			
 			return Response::json('true',200);
 		}
-
 
 		$clinic = new clinicsModel;
 		$result = $clinic->saveItem($clinic);
@@ -76,7 +74,6 @@ class clinicsController extends BaseController
 		$user->save();
 
 		return Response::json('New clinic has been added successfuly',200);
-		
 	}
 
 	public function postUpdate()
@@ -89,6 +86,7 @@ class clinicsController extends BaseController
 	public function getDelete($id = 0)
 	{
 		$clinic = clinicsModel::find($id);
+		if(empty($clinic)) return Response::json('Error : Clinic could not be found ,Failed to delte clinic',404);
 		$clinic->delete();
 		return Response::json('Clinic has been deleted successfuly',200);
 	}
