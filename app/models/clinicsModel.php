@@ -48,8 +48,9 @@ class clinicsModel extends Eloquent
 		$clinic->pic_link = Session::get('clinicPic');
 		$clinic->save();
 
-		Session::forget('clinicPic');
+		
 		Session::forget('clinicLogo');
+		Session::forget('clinicPic');
 
 		return $clinic;
 	}
