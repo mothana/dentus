@@ -68,7 +68,7 @@ class clinicsController extends BaseController
 		$user->first_name = 'null';
 		$user->last_name = 'null';
 		$user->email = $result->email;
-		$user->password = Hash::make($result->password);
+		$user->password = Hash::make(Input::get('password'));
 		$user->role = 'clinic';
 		$user->user_id = $result->id;
 		$user->save();
