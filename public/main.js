@@ -520,6 +520,7 @@ dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 
 		$http.post('api/v1/clinics/newvisit',visit)
 		.success(function (data,success) {
+			$scope.user.serial_number = '';
 			$scope.message = false;
 			$scope.errorMsg = false;
 			$scope.theMsg = 'User visit has been registered successfully';
@@ -540,6 +541,7 @@ dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 		$scope.errorMsg = false;
 		$scope.message = false;
 		$scope.search = '';
+		$scope.user.serial_number = '';
 	};
 
 	$scope.searchButton = function () {
@@ -549,7 +551,7 @@ dentus.controller('clinics',function ($scope,$http,$location,queryDB) {
 		$http.post('api/v1/clinics/search',$scope.user)
 		.success(function (data,success) {
 			$scope.search = data;
-			if(parseInt($scope.search.balance) < 0){
+			if(parseInt($scope.search.balance) <= 0){
 				$scope.showCost = false;
 				$scope.showDiagnosis = false;
 				$scope.ShowCheckIn = false;
