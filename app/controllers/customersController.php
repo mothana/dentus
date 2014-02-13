@@ -63,8 +63,23 @@ class customersController extends BaseController
 
 		if($customer->saveItem($customer))
 		{
-			Session::put('signed','true');
-			return Response::json('New customer has been added successfully',200);
+			if(Auth::user()->role == 'admin')
+			{
+				$user = new User;
+				$user->first_name = $customer->first_name;
+				$user->last_name = $customer->last_name;
+				$user->email = $customer->email;
+				$user->password = $customer->password;
+				$user->role = 'user';
+				$user->user_id = $customer->id;
+				$user->save();
+				return Response::json('New customer has been added successfully',200);
+			}
+			else
+			{
+				Session::put('signed','true');
+				return Response::json('New customer has been added successfully',200);
+			}
 		}
 
 		return Response::json('Error : validation has failed',400);
