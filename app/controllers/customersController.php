@@ -85,8 +85,8 @@ class customersController extends BaseController
 		return Response::json('Error : validation has failed',400);
 	}
 
-	//check if the user in has signed up .... this is used to tell the frontEnd that the user has signed up
-	//so able to show the "success" page which means the user has signed up successfully
+	//check if the user  has signed up .... this is used to tell the frontEnd that the user has signed up
+	//so show the "success" page which means the user has signed up successfully
 	public function getChecksignup()
 	{
 		return $status = (Session::get('signed') == 'true') ? Response::json('true',200) : Response::json('false',400);
