@@ -59,9 +59,9 @@ class customersModel extends Eloquent
 		$customer->company_city = Input::get('company_city');
 		$customer->company_phone = Input::get('company_phone');
 		$customer->email = Input::get('email');
+		$customer->serial_number = 'null';
 		$customer->password = Hash::make(Input::get('password'));
 		$customer->img_link = Session::get('fileName');
-		$customer->serial_number = 'null';
 
 		if(Input::get('balance'))
 		{
@@ -73,13 +73,13 @@ class customersModel extends Eloquent
 		}
 		
 		$status = (Auth::user()->role == 'admin') ? 'true' : 'false';
-
 		$customer->active = $status;
-
-
 		$customer->save();
 
-		
+		$serial_number = date('y').date('m').date('d');
+		$value = (Auth::user()->role == 'admin') ? $serial_number . $customer->id : 'null';
+		$customer->serial_number = $value;
+		$customer->save();
 
 		return true;
 	}
