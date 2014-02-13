@@ -34,47 +34,30 @@
 	<br />
 
 	<div ng-show='message' class="row panel">
-		<table>
-			<thead>
-				<tr>
-					<th>Picture</th>
-					<th>Full Name</th>
-					<th>Nationality</th>
-					<th>Email</th>
-					<th>Balance</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-model='search'>
-					<td><img class="th" style="width:100%;" src="/uploads/{{search.img_link}}" /></td>
-					<td>{{search.first_name}} {{search.last_name}}</td>
-					<td>{{search.nationality}}</td>
-					<td>{{search.email}}</td>
-					<td>{{search.balance}}</td>
-				</tr>
-				<tr>
-					<td colspan="5" ng-show='showCost'>
-						<input type="text" name="cost" ng-model="cost" placeholder='Cost'/>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="5" ng-show='showDiagnosis'>
-						<textarea name='diagnosis' ng-model='diagnosis' placeholder='case'></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="5" ng-show='showLowBalance'>
-						<h5>Please renew your subscription</h5>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="5">
-						<button ng-show='ShowCheckIn' ng-click='register()' class="button">Register</button>
-						<button ng-click='cancel()' class="button">Cancel</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="six columns" ng-model='search'>
+			<span><img class="th" style="width:100%;" src="/uploads/{{search.img_link}}" /></span>
+		</div>
+
+		<div class="six columns">
+			<p>
+				Name => {{search.first_name}} {{search.last_name}}<br />
+				Nationality => {{search.nationality}}<br />
+				Email => {{search.email}}<br />
+				Balance => <b>{{search.balance}}</b>
+			</p>
+			<span colspan="5" ng-show='showCost'>
+				<input type="text" name="cost" ng-model="cost" placeholder='Cost'/>
+			</span>
+			<span colspan="5" ng-show='showDiagnosis'>
+				<textarea name='diagnosis' ng-model='diagnosis' placeholder='case'></textarea>
+			</span>
+			<span colspan="5" ng-show='showLowBalance'>
+				<h5>Kindly , advice {{search.first_name}} to renew the subscription</h5>
+			</span>
+			<button ng-show='ShowCheckIn' ng-click='register()' class="button">Register</button>
+			<button ng-click='cancel()' class="button">Cancel</button>
+		</div>
+
 	</div>
 
 	<br />
