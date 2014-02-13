@@ -111,7 +111,7 @@ class clinicsController extends BaseController
 		$visit->save();
 
 		$customer = customersModel::find(Input::get('customer_id'));
-		$customer->balance =  $customer->balance - Input::get('cost');
+		$customer->balance =  $customer->balance - (Input::get('cost') * 0.4);
 		$customer->save();
 
 		return Response::json('Visit has been recorded successfuly',200);
