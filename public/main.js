@@ -429,7 +429,7 @@ $http.get('api/v1/customers/delete/' + info)
 });
 
 dentus.controller('users',function ($http,$scope) {
-	$http.get('api/v1/customers/profile/1')
+	$http.get('api/v1/customers/profile')
 		.success(function (data,success) {
 			$scope.user = data;
 		})
