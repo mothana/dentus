@@ -12,7 +12,12 @@ class customersController extends BaseController
 
 	public function getProfile($id = 0)
 	{
-		return customersModel::find($id);
+		if($id == 0 && Auth::user()->role != 'admin')
+		{
+			$user_id = UsersModel::find(Auth::user()->id);
+			return Response::json(customersModel::find($user_id->user_id),200);
+		}
+		return Response::json(customersModel::find($id),200);
 	}
 
 	public function getApplications()
