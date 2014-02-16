@@ -436,9 +436,10 @@ dentus.controller('users',function ($http,$scope) {
 		.error(function (data,success) {
 	});
 
-	$http.get('api/v1/customers/clinics/1')
+	$http.get('api/v1/customers/visits')
 		.success(function (data,success) {
 			$scope.clinics = data;
+			console.log(data);
 		})
 		.error(function (data,success) {
 	});
