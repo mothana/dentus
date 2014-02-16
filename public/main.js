@@ -123,23 +123,22 @@ dentus.factory('queryDB', function($http){
 dentus.factory('revealBoxManager',function () {
 	var factory = {};
 
-	factory.daTitle = [];
-	factory.message = [];
-	factory.daLink = [];
+	factory.daTitle =  'Record was deleted successfully...';
+	factory.daTitle2 = 'Record was added successfully...';
+	factory.daTitle3 = 'Error occured! ...';
+
+	factory.message = '';
+	factory.daLink = 'Home';
+
 
 	factory.setDaTitle = function (daContent) {
-		factory.daTitle.push(daContent);
-		factory.daTitle = [];
+
 	}
 	
 	factory.setMessage = function (daContent) {
-		factory.message.push(daContent);
-		factory.message = [];
 	}	
 
 	factory.setDaLink = function (daContent) {
-		factory.daLink.push(daContent);
-		factory.daLink = [];
 	}
 
 	return factory;
@@ -318,7 +317,7 @@ dentus.controller('adminUsers',function (revealBoxManager,$location,$http,$scope
 $scope.daLinkusers = function (info,index) {
 			$http.get('api/v1/customers/delete/' + info)
 				.success(function (data,success) {
-				    $scope.user.splice(index, 1);
+				    $scope.users.splice(index, 1);
 					revealBoxManager.setDaTitle('Operation is done ... ');
 					revealBoxManager.setMessage('Next');
 					$('#myModal').reveal();
@@ -429,17 +428,16 @@ $http.get('api/v1/customers/delete/' + info)
 });
 
 dentus.controller('users',function ($http,$scope) {
-	$http.get('api/v1/customers/profile')
+	$http.get('api/v1/customers/profile/1')
 		.success(function (data,success) {
 			$scope.user = data;
 		})
 		.error(function (data,success) {
 	});
 
-	$http.get('api/v1/customers/visits')
+	$http.get('api/v1/customers/clinics/1')
 		.success(function (data,success) {
 			$scope.clinics = data;
-			console.log(data);
 		})
 		.error(function (data,success) {
 	});
@@ -599,7 +597,9 @@ dentus.controller('success',function ($scope,$http,$location) {
 
 dentus.controller('revealBox',function ($scope,revealBoxManager) {
 	$scope.daTitle = revealBoxManager.daTitle;
+	$scope.daTitle2 = revealBoxManager.daTitle2;
+	$scope.daTitle3 = revealBoxManager.daTitle3;
+
 	$scope.message = revealBoxManager.message;
 	$scope.daLink = revealBoxManager.daLink;
 });
-
