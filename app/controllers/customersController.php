@@ -44,13 +44,23 @@ class customersController extends BaseController
 		$user->save();
 	}
 
-	public function postVisits()
+	public function getVisits($id = 0)
 	{
-		return Response::json(customersModel::find(Input::get('id'))->visits()->get(),200);
+		if($id == 0 && Auth::user()->role != 'admin')
+		{
+			$userData = UsersModel::find(Auth::user()->id);
+			return Response::json(visitsModel::where('customer_id','=',$userData->user_id)->get(),200);
+		}
+		return Response::json(visitsModel::where('customer_id','=',Input::get('id'))->get(),200);
 	}
 
-	public function getClinics($id)
+	public function getClinics($id = 0)
 	{
+		if($id == 0 && Auth::user()->role != 'admin')
+		{
+			$userData = UsersModel::find(Auth::user()->id);
+			return Response::json(customersModel::find($userData->user_id)->clinics()->get(),200);
+		}
 		return Response::json(customersModel::find($id)->clinics()->get(),200);
 	}
 
