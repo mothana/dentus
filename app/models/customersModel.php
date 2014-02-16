@@ -7,11 +7,13 @@ class customersModel extends Eloquent
 {
 	protected $table = 'customers';
 
+	//Not used so far
 	public function visits()
 	{
-		return $this->hasMany('visitsModel','customer_id');
+		return $this->belongsToMany('customersModel','visits','customer_id','clinic_id');
 	}
 
+	//Not used so far
 	public function clinics()
 	{
 		return $this->belongsToMany('clinicsModel','visits','customer_id','clinic_id');
