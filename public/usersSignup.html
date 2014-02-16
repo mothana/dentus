@@ -91,6 +91,13 @@
 				<label name="password">Password</label>
 				<input type="password" name="password" ng-model="user.password" placeholder="Password" required />
 
+				<label name="balance">Package</label>
+				<select class="button" ng-model="user.balance">
+					<option value="5000">Premium</option>
+					<option value="4000">Plus</option>
+					<option value="3000">Standard</option>
+				</select>
+
 				<label name="img_link">Image</label>
 				<input type="file" ng-file-select="onFileSelect($files)"  required>
 

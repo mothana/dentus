@@ -92,8 +92,12 @@
 				<label name="company_phone">Company phone</label>
 				<input type="number" name="company_phone" ng-model="user.company_phone" placeholder="Company Phone" required/>
 
-				<label name="balance">Balance</label>
-				<input type="number" name="balance" ng-model="user.balance" placeholder="Balance" required />
+				<label name="balance">Package</label>
+				<select class="button" ng-model="user.balance">
+					<option value="5000">Premium</option>
+					<option value="4000">Plus</option>
+					<option value="3000">Standard</option>
+				</select>
 
 				<label name="email">Email</label>
 				<input type="email" name="email" ng-model="user.email" placeholder="Email" required/>
