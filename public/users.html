@@ -30,12 +30,9 @@
 
 	<div class="row">
 		<div class="eight columns centered panel"  ng-model='clinics'>
-			<table>
+			<table class="twelve">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>City</th>
-						<th>Phone</th>
 						<th>Diagnosis</th>
 						<th>Cost</th>
 						<th>Date</th>
@@ -44,11 +41,8 @@
 
 				<tbody ng-repeat="info in clinics">
 					<tr>
-						<td>{{info.name}}</td>
-						<td>{{info.city}}</td>
-						<td>{{info.phone_number}}</td>
-						<td>Someting very minor</td>
-						<td>200</td>
+						<td>{{info.diagnosis}}</td>
+						<td>{{info.cost}}</td>
 						<td>{{info.created_at}}</td>
 					</tr>
 				</tbody>
