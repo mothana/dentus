@@ -376,50 +376,49 @@ dentus.controller('adminClinics',function (revealBoxManager,$location,$http,$sco
 dentus.controller('adminApplications',function (revealBoxManager,$location,$http,$scope,queryDB) {
 	$http.get('api/v1/login/check')
 	.success(function (data,success) {
-	$http.get('api/v1/customers/applications')
-		.success(function (data,success) {
-			if(data.length == 0){
-				$scope.showApplications = false;
-				$scope.theMsg = 'No applications are available';
-				$scope.errorMsg = true;
-			} else {
-				$scope.showApplications = true;
-				$scope.users = data;
-			}
-		})
-		.error(function (data,success) {
-	});
+		$http.get('api/v1/customers/applications')
+			.success(function (data,success) {
+				if(data.length == 0){
+					$scope.showApplications = false;
+					$scope.theMsg = 'No applications are available';
+					$scope.errorMsg = true;
+				} else {
+					$scope.showApplications = true;
+					$scope.users = data;
+				}
+			})
+			.error(function (data,success) {
+		});
 
-	$scope.errorMsgClose = function () {
-		$scope.errorMsg = false;
-	}
+		$scope.errorMsgClose = function () {
+			$scope.errorMsg = false;
+		}
 
-	$scope.accept = function (info,index) {
-		$http.get('api/v1/customers/accept/' + info);
-		$scope.users.splice(index, 1);
-		revealBoxManager.setDaTitle('CUSTOMER WAS ACCEPTED ... ');
-		revealBoxManager.setMessage('3rd Error');
-		revealBoxManager.setDaLink('Home');
-		$('#myModal').reveal();
-	}
-	
-	$scope.reject = function (info,index) {
-$http.get('api/v1/customers/delete/' + info)
-	.success(function (data,success) {
-	    $scope.users.splice(index, 1);
-	    revealBoxManager.setDaTitle('Operation is done ... ');
-		revealBoxManager.setMessage('Next');
-		revealBoxManager.setDaLink('Home');
-		$('#myModal').reveal();
-})
-	.error(function (data,success) {
-		revealBoxManager.setDaTitle('Error... ');
-		revealBoxManager.setMessage('Next');
-		revealBoxManager.setDaLink('Home');
-		$('#myModal').reveal();	
-});
-
-	}
+		$scope.accept = function (info,index) {
+			$http.get('api/v1/customers/accept/' + info);
+			$scope.users.splice(index, 1);
+			revealBoxManager.setDaTitle('CUSTOMER WAS ACCEPTED ... ');
+			revealBoxManager.setMessage('3rd Error');
+			revealBoxManager.setDaLink('Home');
+			$('#myModal').reveal();
+		}
+		
+		$scope.reject = function (info,index) {
+			$http.get('api/v1/customers/delete/' + info)
+				.success(function (data,success) {
+				    $scope.users.splice(index, 1);
+				    revealBoxManager.setDaTitle('Operation is done ... ');
+					revealBoxManager.setMessage('Next');
+					revealBoxManager.setDaLink('Home');
+					$('#myModal').reveal();
+			})
+			.error(function (data,success) {
+				revealBoxManager.setDaTitle('Error... ');
+				revealBoxManager.setMessage('Next');
+				revealBoxManager.setDaLink('Home');
+				$('#myModal').reveal();	
+			});
+		}
 	})
 	.error(function (data,success) {
 		$location.path('login');
@@ -428,14 +427,14 @@ $http.get('api/v1/customers/delete/' + info)
 });
 
 dentus.controller('users',function ($http,$scope) {
-	$http.get('api/v1/customers/profile/1')
+	$http.get('api/v1/customers/profile')
 		.success(function (data,success) {
 			$scope.user = data;
 		})
 		.error(function (data,success) {
 	});
 
-	$http.get('api/v1/customers/clinics/1')
+	$http.get('api/v1/customers/clinics')
 		.success(function (data,success) {
 			$scope.clinics = data;
 		})
