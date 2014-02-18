@@ -259,11 +259,6 @@ var adminCreateclinic = [ '$http','$scope', '$upload','$location', 'revealBoxMan
 
 var adminCreateuser = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
 
-	//Make the birthdate field a JQuery date picker file
-	$(function() {
-		$( "#birthdate" ).datepicker();
-	});
-
 	$scope.signUp = function () {
 		$http.post('api/v1/customers/create',$scope.user)
 		.success(function (data,success) {
@@ -443,11 +438,6 @@ dentus.controller('users',function ($http,$scope) {
 });
 
 var usersSignup = [ '$http','$scope', '$upload','$location', 'revealBoxManager',function($http,$scope,$upload,$location,revealBoxManager) {
-
-	//Make the birthdate field a JQuery date picker file
-	$(function() {
-		$( "#birthdate" ).datepicker();
-	});
 
 	$scope.signUp = function () {
 		$http.post('api/v1/customers/create',$scope.user)
